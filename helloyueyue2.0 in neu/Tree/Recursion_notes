@@ -1,0 +1,16 @@
+1. 定义契约       → 这个函数接收什么、返回什么
+2. 写 base case   → 最简单的情况直接返回
+3. 相信递归结果   → 直接用 dfs(node.left)，不要手动展开
+4. 用递归结果组合答案
+
+if not node:
+    return 0
+加了这句之后，就不用判断if node.left: if node.right:了
+
+if not node:
+    return 0
+在递归入口就拦截了 None，所以当你调用 dfs(node.left) 时，
+不管 node.left 是不是 None，都会被这一行安全接住，返回 0
+
+if not node: return 0 解决的是空指针安全问题。
+如果你还要判断 node.left/right，一定是题目逻辑需要（叶子节点），而不是为了防止报错。

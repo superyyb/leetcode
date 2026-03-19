@@ -1,0 +1,19 @@
+1.在 Python 中，字典（Dictionary）和集合（Set）的 Key 必须是可哈希的（Hashable），
+即不可变对象。
+Counter(string) 本质上是一个字典，它是可变的（Mutable），因此不能直接作为 freq 的 Key。
+(lc49)
+所以必须把字典转变为一个tuple/string/int再操作,list/dic/set都不可以(不可变)
+
+2.对字典排序，提取什么得到什么
+freq_list = sorted(freq.values(), reverse = True)会把keys丢掉
+如果要保留key和value 用
+freq_list = sorted(freq.items(), key = lambda x:x[1], reverse = True)
+
+3.sorted()，会把对象转为list
+  .sort(),只能用于list
+
+
+4.求k个频率最大/最小(lc347)
+ heap
+ bucket sort: 核心思想： 利用“频率”本身作为数组下标，然后从后往前遍历bucket，找到k个最高频
+ hashtable + sort

@@ -1,0 +1,38 @@
+#路径类模版
+def dfs(node, curr_sum):
+    # 1️⃣ 做选择
+    path.append(node.val)
+    curr_sum += node.val
+
+    # 2️⃣ 判断是否是答案
+    if 满足条件:
+        res.append(path[:])
+
+    # 3️⃣ 递归探索
+    dfs(left)
+    dfs(right)
+
+    # 4️⃣ 撤销选择（回溯）
+    path.pop()
+
+#通用模版
+def backtrack(状态):
+    if 终止条件:
+        记录答案
+        return
+
+    for 选择 in 可选列表:
+        做选择
+        backtrack(新状态)
+        撤销选择
+
+
+ #lc113
+ 定义path作为单条路径 res作为所有路径的列表
+在dfs里
+1.把当前节点加到path里，当前节点值加到curr_sum里
+2.判断叶子节点->curr_sum == target_sum -> 把path加到res里面
+3.递归左右子树
+4.path.pop()'
+
+用bfs解这道题 要用的参数放queue里

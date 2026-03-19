@@ -1,0 +1,50 @@
+
+1. 什么时候停 →  if xxx: return
+2. 当前在哪  →
+3. 能往哪走  →
+
+面对一个问题，需要经历多个步骤，且每一步都有多种选择，而你不知道哪条路能通向终点时，就用 DFS
+模版：
+def dfs(当前状态):
+    # 1. 边界条件（出口）：什么时候游戏结束？
+    if 达到目标状态:
+        return True / 记录结果
+
+    if 无法继续走下去:
+        return False
+
+    # 2. 做出选择：
+    for loop:
+        if 选项合法:
+            # 3. 递归：带着这个选择，进入下一步
+            if dfs(下一个状态):
+                return True
+    # 全部试过了都不行
+    return False
+
+
+memo:
+什么时候需要memo:同一个状态会被重复访问时。
+状态就是memo的key
+查 memo 一定在 base case 之后,因为 base case 不需要缓存，直接返回就好。
+存 memo 一定在 return 之前
+
+模版：
+def dfs(状态):
+    # 1. base case
+    if 终止条件:
+        return 结果
+
+    # 2. 查 memo
+    if 状态 in memo:
+        return memo[状态]
+
+    # 3. 递归探索
+    res = 初始值
+    for 每种选择:
+        res = 综合(res, dfs(下一个状态))
+
+    # 4. 存 memo，再返回
+    memo[状态] = res
+    return res
+

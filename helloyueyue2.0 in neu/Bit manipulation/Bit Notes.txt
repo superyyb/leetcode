@@ -1,0 +1,49 @@
+XOR 本身就是一种 位运算（Bit Manipulation），它对两个数的每一位分别做运算：
+相同为 0，不同为 1
+
+  4 = 100
+  4 = 100
+XOR = 000  → 0
+
+  4 = 100
+  1 = 001
+XOR = 101  → 5
+所以 a ^ a = 0 的本质是：每一位上两个相同的数字都抵消了。（lc136）
+
+
+
+十进制转二进制方法：
+number = 10
+
+1.bin()
+result = bin(number)
+print(result)  # 输出: '0b1010'
+
+2.format(number, 'b')
+print(format(number, 'b'))    # 输出: '1010'
+print(format(number, '08b'))  # 输出: '00001010' 用0补齐八位
+
+3.print(f"{number:b}")   # 输出: '1010'
+
+4.
+除以 2：得到商和余数。
+记录余数：将余数保存起来。
+更新数值：用商替代原来的数，重复步骤 1。
+终止条件：当商为 0 时停止。
+逆序排列：最后得到的余数从下往上读，就是二进制结果。
+
+def decimal_to_binary(n):
+    if n == 0:
+        return "0"
+    reminders = []  # 用于存储余数
+    while n > 0:
+        remainder = n % 2     # 取余数
+        reminders.append(str(remainder))
+        n = n // 2            # 取整除后的商，进入下一轮
+    reminders.reverse()
+    return "".join(reminders)
+
+二进制右移一位，本质上就是除以 2 去掉余数
+i >> 1 和 i // 2 结果完全一样
+lc338
+

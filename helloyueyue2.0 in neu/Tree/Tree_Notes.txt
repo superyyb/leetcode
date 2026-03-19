@@ -1,0 +1,5 @@
+1.所有bfs都必须判断：
+if node.left:
+    q.append(node.left)
+if node.right:
+    q.append(node.right)
