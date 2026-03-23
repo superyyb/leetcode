@@ -1,3 +1,25 @@
+# Mar 22 复盘
+class Solution:
+    def isSymmetric(self, root: Optional[TreeNode]) -> bool:
+        if not root:
+            return True
+        def dfs(p, q):
+            '''
+            dfs(p, q) 回答的问题是：p 和 q 这两棵子树，是不是镜像？
+            Logic:
+            Compare two subtrees(p, q)
+            '''
+            if not p and not q:
+                return True
+            if not p or not q:
+                return False
+            if p.val != q.val:
+                return False
+            return dfs(p.left, q.right) and dfs(p.right, q.left)
+        return dfs(root.left, root.right)
+
+
+
 #比较时要先把节点为空的情况弄清楚，要不然就是操作空节点
 # 并且镜像：左子树的左节点对应右子树的右节点，左子树的右节点对应右子树的左节点
 from typing import Optional
