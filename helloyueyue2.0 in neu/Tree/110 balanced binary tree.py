@@ -1,3 +1,29 @@
+# Mar22 复盘
+class Solution:
+    def isBalanced(self, root: Optional[TreeNode]) -> bool:
+        '''
+        如果要同时返回两种信息（高度 + 是否平衡），有两种方式：
+        方式一：返回tuple      → return (height, is_balanced)
+        方式二：用特殊值做暗号  → -1 表示"出问题了"  ← 110题用这个更简洁
+        Logic for single node:
+        Check every node if it is balanced
+        Calculate the height of subtree
+        '''
+        if not root:
+            return True
+
+        def dfs(node):
+            if not node:
+                return 0
+            left_h = dfs(node.left)
+            right_h = dfs(node.right)
+            if left_h == -1 or right_h == -1:
+                return -1
+            if abs(left_h - right_h) > 1:
+                return -1
+            return max(left_h, right_h) + 1
+        return dfs(root) != -1
+
 class Solution:
     def isBalanced(self, root: Optional[TreeNode]) -> bool:
         #思路：对每一个node要判断是否balanced
