@@ -1,0 +1,49 @@
+问最短步数/最少操作 → BFS
+问岛屿数量/面积/连通性 → BFS 或 DFS 都行，DFS 写起来更短
+
+BFS:
+from collections import deque
+def bfs(grid):
+    m, n = len(grid), len(grid[0])
+    directions = [(0,1),(0,-1),(1,0),(-1,0)]
+    count = 0
+    for r in range(m):
+        for c in range(n):
+            if grid[r][c] == '1':
+                count += 1
+
+                queue = deque([(r, c)])
+                grid[r][c] = '0'    # 标记 visited
+
+                while queue:
+                    cr, cc = queue.popleft()
+                    for dr, dc in directions:
+                        nr, nc = cr + dr, cc + dc
+
+                        if 0 <= nr < m and 0 <= nc < n and grid[nr][nc] == '1':
+                            queue.append((nr, nc))
+                            grid[nr][nc] = '0'
+
+    return count
+
+DFS:
+def dfs(grid):
+    m, n = len(grid), len(grid[0])
+    directions = [(0,1),(0,-1),(1,0),(-1,0)]
+    count = 0
+
+    def dfs_visit(r, c):
+        if r < 0 or r >= m or c < 0 or c >= n or grid[r][c] != '1':
+            return
+        grid[r][c] = '0'
+
+        for dr, dc in directions:
+            dfs_visit(r + dr, c + dc)
+
+    for r in range(m):
+        for c in range(n):
+            if grid[r][c] == '1':
+                count += 1
+                dfs_visit(r, c)
+
+    return count
