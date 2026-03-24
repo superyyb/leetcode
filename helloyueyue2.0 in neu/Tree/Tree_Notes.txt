@@ -6,3 +6,22 @@ if node.right:
 
 2.dfs怎么算树的高度
 return max(left_h, right_h) + 1 #我的高度 = 左右子树中更高的那个 + 1
+
+3.top-down
+def dfs(node, info):
+    if not node:
+        return
+    # Type here: logic for single node
+    # Then recursion
+    dfs(node.left, updated info)
+    dfs(node.right, updated info)
+
+4.Bottom-up
+def dfs(node):
+    if not node:
+        return base value
+
+    left = dfs(node.left)   # 先拿到左子树的答案
+    right = dfs(node.right) # 先拿到右子树的答案
+    # 用left和right算出当前节点的答案
+    return 当前节点的结果

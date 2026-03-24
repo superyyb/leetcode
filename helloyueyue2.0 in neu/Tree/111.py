@@ -24,6 +24,7 @@ class Solution:
         return min_depth
 
 #bottom-up
+#❕想不到左右子树为空的特殊情况，用只有左子树或只有右子树的case跑一遍
 class Solution:
     def minDepth(self, root: Optional[TreeNode]) -> int:
         # 当前节点逻辑：
