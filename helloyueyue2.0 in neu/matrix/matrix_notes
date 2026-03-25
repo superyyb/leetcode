@@ -13,7 +13,7 @@ def bfs(grid):
                 count += 1
 
                 queue = deque([(r, c)])
-                grid[r][c] = '0'    # 标记 visited
+                grid[r][c] = '0'    # 标记grid[r][c]为 visited
 
                 while queue:
                     cr, cc = queue.popleft()
@@ -22,7 +22,7 @@ def bfs(grid):
 
                         if 0 <= nr < m and 0 <= nc < n and grid[nr][nc] == '1':
                             queue.append((nr, nc))
-                            grid[nr][nc] = '0'
+                            grid[nr][nc] = '0' # 标记grid[nr][nc]为 visited
 
     return count
 
