@@ -8,7 +8,13 @@ XOR = 000  → 0
   4 = 100
   1 = 001
 XOR = 101  → 5
-所以 a ^ a = 0 的本质是：每一位上两个相同的数字都抵消了。（lc136）
+所以 a ^ a = 0 的本质是：每一位上两个相同的数字都抵消了。
+
+只找出现了一次的数（lc136）
+res = 0
+for num in nums:
+    res ^= num
+
 
 
 
@@ -46,4 +52,15 @@ def decimal_to_binary(n):
 二进制右移一位，本质上就是除以 2 去掉余数
 i >> 1 和 i // 2 结果完全一样
 lc338
+
+统计1的个数(lc191)
+while n:
+    count += n & 1
+    n >>= 1
+
+reverse bits(lc190)
+res = 0
+for _ in range(32):
+    res = (res << 1) | (n & 1)
+    n >>= 1
 
