@@ -1,3 +1,13 @@
+绝大多数二叉树dfs题：
+Time = O(n) 每个节点访问一次
+Space = O(h) 递归深度 = 树高度 = h = log n
+
+绝大多数 BFS 树题：
+Time = O(n)
+Space = O(n)
+Space取决于：树的最大宽度 最后一层最多n/2
+链式树：space = O(1)
+
 1.所有bfs都必须判断：
 if node.left:
     q.append(node.left)

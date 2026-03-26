@@ -1,3 +1,14 @@
+class Solution:
+    def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+        #logic for single node:
+        # switch the left and right child of curr node
+        if not root:
+            return None
+        left = self.invertTree(root.left)
+        right = self.invertTree(root.right)
+        root.left, root.right = right, left#递归返回的是“子树结果”，你必须把它重新挂回 root
+        return root
+
 from typing import Optional
 #每一层在“子节点都翻好”之后再交换左右。
 class TreeNode:
@@ -40,25 +51,6 @@ class Solution:
         root.left, root.right = new_right, new_left
         return root
 
-#递归调用没有利用返回值，只是「顺着树往下走」，在过程中直接修改 root
-#不需要返回值
-class Solution:#preorder:root-left-right
-    def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
-        if not root:
-            return None
-        root.left,root.right=root.right,root.left
-        self.invertTree(root.left)#只是为了递归修改树结构，不关心结果，不要加return
-        self.invertTree(root.right)
-        return root
-
-class Solution:#postorder:left-right-root
-    def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
-        if not root:
-            return None
-        self.invertTree(root.left)
-        self.invertTree(root.right)
-        root.left, root.right = root.right, root.left
-        return root
 
 class Solution:#inorder:left-root-right
     def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
